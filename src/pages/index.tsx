@@ -1,30 +1,10 @@
-import { useState } from "react";
 import TextInput from "../components/TextInput";
+import Tweet from "../components/Tweet";
+import { useIndex } from "../hooks/useIndex.page";
 import styles from "./Index.module.css";
 
 export default function Index() {
-  const [text, setText] = useState("");
-  const [tweetList, setTweetList] = useState([]);
-  const maxLength = 125;
-
-  function onTextChange(event) {
-    const text = event.target.value;
-    console.log("VALOR TEXT: ", text);
-    if (text.length <= maxLength) {
-      setText(text);
-    }
-  }
-
-  function isTextNaoNuloEVazio(text: string) {
-    return text != null && text != "";
-  }
-
-  function sendTweet(event) {
-    console.log("VALOR TEXTsendTweet: ", isTextNaoNuloEVazio(text));
-    if (isTextNaoNuloEVazio(text)) {
-      setTweetList([...tweetList, text]);
-    }
-  }
+  const { text, onTextChange, maxLength, sendTweet, tweetList } = useIndex();
 
   return (
     <div>
@@ -33,7 +13,7 @@ export default function Index() {
         <img
           className={styles.avatar}
           src="https://github.com/rodrigosrosa89.png"
-          alt=""
+          alt="foto do perfil"
         />
         <TextInput
           placeholder={"O que está ocorrendo?"}
@@ -47,14 +27,22 @@ export default function Index() {
         <div>
           {text.length} / {maxLength}
         </div>
-        <button onClick={sendTweet} className={styles.postButton}>
+        <button
+          onClick={sendTweet}
+          className={styles.postButton}
+          disabled={text.length === 0}
+        >
           Tweetar
         </button>
       </div>
 
-      <ul>
+      <ul className={styles.tweetList}>
         {tweetList.map((tweet) => {
-          return <li>{tweet}</li>;
+          return (
+            <li className={styles.tweetListItem}>
+              <Tweet tweet={tweet} children={tweet} />
+            </li>
+          );
         })}
       </ul>
     </div>

@@ -14,6 +14,7 @@ export function useIndex() {
       picture: "https://github.com/rodrigosrosa89.png",
     },
   };
+
   function onTextChange(event) {
     const text = event.target.value;
     if (text.length <= maxLength) {

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import Contador from "../components/Contador";
 import TextInput from "../components/TextInput";
 import Tweet from "../components/Tweet";
 import { useIndex } from "../hooks/useIndex.page";
@@ -5,6 +7,18 @@ import styles from "./Index.module.css";
 
 export default function Index() {
   const { text, onTextChange, maxLength, sendTweet, tweetList } = useIndex();
+  const [contador, setContador] = useState(0);
+  const [contador2, setContador2] = useState(0);
+
+  useEffect(() => {
+    console.log(
+      "Componente criado, vai chamar apenas na criação do componente!",
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log("contador 2 atualizado!");
+  }, [contador2]);
 
   return (
     <div>
@@ -40,11 +54,18 @@ export default function Index() {
         {tweetList.map((tweet) => {
           return (
             <li className={styles.tweetListItem}>
-              <Tweet tweet={tweet} children={tweet} />
+              <Tweet tweet={tweet} />
             </li>
           );
         })}
       </ul>
+      <Contador numero={contador} onClick={() => setContador(contador + 1)} />
+      <br></br>
+      <br></br>
+      <Contador
+        numero={contador2}
+        onClick={() => setContador2(contador2 + 2)}
+      />
     </div>
   );
 }

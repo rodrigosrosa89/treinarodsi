@@ -59,3 +59,9 @@
 .tweetListItem:not(:last-child) {
   border-bottom: 1px solid var(--border);
 }
+
+.routerContainer {
+  display: grid;
+  gap: 25px;
+  margin-top: 100px;
+}

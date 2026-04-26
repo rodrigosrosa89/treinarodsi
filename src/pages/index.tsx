@@ -4,6 +4,10 @@ import TextInput from "../components/TextInput";
 import Tweet from "../components/Tweet";
 import { useIndex } from "../hooks/useIndex.page";
 import styles from "./Index.module.css";
+import About from "../components/About";
+import Paginanicial from "../components/PaginaInicial";
+import { Link, Route, Routes } from "react-router-dom";
+import Produtos, { Produto } from "../components/Produto";
 
 export default function Index() {
   const { text, onTextChange, maxLength, sendTweet, tweetList } = useIndex();
@@ -66,6 +70,23 @@ export default function Index() {
         numero={contador2}
         onClick={() => setContador2(contador2 + 2)}
       />
+
+      <div className={styles.routerContainer}>
+        <Routes>
+          <Route path="/inicio" element={<Paginanicial />} />
+          <Route path="/about/:id" element={<About />} />
+          <Route path="/produtos/*" element={<Produtos />}>
+            <Route path=":id" element={<Produto />} />
+          </Route>
+        </Routes>
+        <Link to="/inicio">Home</Link>
+        <br />
+        <Link to="/produtos">Produuutos!</Link>
+        <br />
+        <Link to="/about/1?parametroA=Rodrigo">About 1</Link>
+        <br />
+        <Link to="/about/2?parametroA=Achooou!">About 2</Link>
+      </div>
     </div>
   );
 }

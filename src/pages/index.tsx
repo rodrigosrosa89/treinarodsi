@@ -53,7 +53,7 @@ export default function Index() {
       <ul className={styles.tweetList}>
         {tweetList.map((tweet) => {
           return (
-            <li className={styles.tweetListItem}>
+            <li className={styles.tweetListItem} key={1}>
               <Tweet tweet={tweet} />
             </li>
           );

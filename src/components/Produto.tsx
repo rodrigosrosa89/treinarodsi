@@ -1,4 +1,11 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 export default function Produtos() {
   return (
@@ -19,6 +26,24 @@ export default function Produtos() {
 
 export function Produto() {
   const params = useParams();
+  return (
+    <div>
+      <h3>Produto - {params.id}</h3>
+      <Carregamento />
+    </div>
+  );
+}
+
+export function Carregamento() {
+  const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname.includes("valorX")) {
+      navigate("/produtos");
+    }
+  });
   return (
     <div>
       <h3>Produto - {params.id}</h3>

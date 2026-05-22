@@ -3,6 +3,8 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   min-width: 320px;
+  color: var(--primary-text);
+  background-color: var(--background);
 }
 
 * {
@@ -15,4 +17,6 @@ body {
   --primary-text: #0f1419;
   --secondary-text: #536471;
   --border: #cfd9de;
+  --background-musica: #121212;
+  --divider: rgba(255, 255, 2555, 0.1);
 }

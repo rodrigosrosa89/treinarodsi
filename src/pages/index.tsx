@@ -5,9 +5,11 @@ import Tweet from "../components/Tweet";
 import { useIndex } from "../hooks/useIndex.page";
 import styles from "./Index.module.css";
 import About from "../components/About";
-import Paginanicial from "../components/PaginaInicial";
+import PaginaInicial from "../components/PaginaInicial";
 import { Link, Route, Routes } from "react-router-dom";
 import Produtos, { Produto } from "../components/Produto";
+import { AppUsuarioLogado } from "../components/UsuarioLogadoPerfil";
+import TocadorMusica from "../components/TocadorMusica";
 
 export default function Index() {
   const { text, onTextChange, maxLength, sendTweet, tweetList } = useIndex();
@@ -73,7 +75,7 @@ export default function Index() {
 
       <div className={styles.routerContainer}>
         <Routes>
-          <Route path="/inicio" element={<Paginanicial />} />
+          <Route path="/inicio" element={<PaginaInicial />} />
           <Route path="/about/:id" element={<About />} />
           <Route path="/produtos/*" element={<Produtos />}>
             <Route path=":id" element={<Produto />} />
@@ -87,6 +89,16 @@ export default function Index() {
         <br />
         <Link to="/about/2?parametroA=Achooou!">About 2</Link>
       </div>
+      <div>
+        <AppUsuarioLogado />
+      </div>
+
+      <div>
+        <TocadorMusica />
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 }
